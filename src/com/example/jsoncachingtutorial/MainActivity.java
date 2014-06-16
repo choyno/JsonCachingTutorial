@@ -1,5 +1,10 @@
 package com.example.jsoncachingtutorial;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +13,6 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +25,8 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxStatus;
 import com.example.jsoncachingtutorial.api_classes.GetAnnouncements;
 import com.example.jsoncachingtutorial.api_classes.GetAnnouncements.Announcement;
+import com.example.jsoncachingtutorial.lib.cachingSetting;
+import com.example.jsoncachingtutorial.ref.Cal;
 import com.example.jsoncachingtutorial.ref.Ref;
 import com.google.gson.Gson;
 
@@ -31,6 +37,8 @@ public class MainActivity extends Activity {
 	Gson gson = new Gson();
 	Bundle bundleData;
 	
+	cachingSetting cSetting;
+	  
 	GetAnnouncements announcementList = new GetAnnouncements();
 	List<Announcement> announcement_list = new ArrayList<Announcement>();
 	
@@ -42,22 +50,79 @@ public class MainActivity extends Activity {
 	}
 	
 	public void loadView(){
-		  aq = new AQuery(this);
+		cSetting = new cachingSetting(this, getCacheDir());
+		 aq = new AQuery(this);
 		aq.progress(R.id.progressBarAnnouncement).ajax(Ref.getUrl(Ref.GETANNOUNCEMENTS), JSONObject.class, this, "jsonCb"); 
 	} 
 	
-	public void jsonCb(String url, JSONObject json, AjaxStatus status){
-		Log.d("asdasd", "=============");
- 
-		if (status.getCode() == AjaxStatus.NETWORK_ERROR){
-			aq.id(R.id.imgNoConnection).visible();
-			return;
-		} 
-		announcementList = gson.fromJson(String.valueOf(json), GetAnnouncements.class);
+/*	//cache path in android
+	public File cachePath(String fileName){
+		File readFF = new File(getCacheDir(),  fileName);
+		return readFF; 
+	}
+	
+	//check the cache file is exist
+	public boolean checkCachefile(String fileName){ 
+		File file =new File(getCacheDir()+"/" + fileName); 
+		if(file.exists()){ 
+			return true;
+		}else{ 
+			return false;
+		}
+	}
+	 //cache the value 
+	public void createCache(String fileName, String JsonValue){
+		FileOutputStream fos;
+		try {   
+			fos = new FileOutputStream(cachePath(fileName));
+			String content = JsonValue;
+			fos.write(content.getBytes());
+			fos.close(); 
+			Toast.makeText( MainActivity.this,  fileName + " saved",  	Toast.LENGTH_LONG).show(); 
+		} catch (FileNotFoundException e) { 
+			e.printStackTrace();
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}   
+	}
+	@SuppressWarnings("resource")
+	public String readCacheFile(String fileName){
+		FileInputStream fis;
+    	String content = "";
+    	try { 
+    		fis = new FileInputStream(cachePath(fileName));
+    		byte[] input = new byte[fis.available()];
+    		while (fis.read(input) != -1) {}
+    		content += new String(input);
+    	} catch (FileNotFoundException e) {
+    		e.printStackTrace();
+    	} catch (IOException e) {
+    		e.printStackTrace();	
+    	} 
+		Toast.makeText( MainActivity.this,  content,  	Toast.LENGTH_LONG).show();   
+		return content; 
+	}*/
+	
+	public void jsonCb(String url, JSONObject json, AjaxStatus status){ 
+		String date = Cal.currentDate();
+		String fileName =  "announcements" + "_" + "1"+ "_" + date;  
 		
-		if (announcementList.result_code == 0) {
-					Log.d("asdasd", announcementList+"");
-					Log.d("asdasd", json.toString());
+		if(cSetting.checkCachefile(fileName)){  
+			announcementList = gson.fromJson(String.valueOf(cSetting.readCacheFile(fileName)), GetAnnouncements.class);
+		}else{ 
+			 
+				if (status.getCode() == AjaxStatus.NETWORK_ERROR){
+					aq.id(R.id.imgNoConnection).visible();
+					return;
+				} else if( json == null){
+					Toast.makeText(this, "No data!!", Toast.LENGTH_SHORT).show(); 
+				}
+				cSetting.createCache(fileName, json.toString());
+					announcementList = gson.fromJson(String.valueOf(json), GetAnnouncements.class); 
+		} 
+
+ 
+		if (announcementList.result_code == 0) { 
 					populateAnnouncement();
 					populateAnnouncementList();
 					AnnouncementDetails();

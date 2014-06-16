@@ -1,19 +1,18 @@
 package com.example.jsoncachingtutorial.ref;
 
-/**
- * Class containing constants used in class schedules and
- * booking.
- * 
- * @author Jebie Corsiga <jebie.corsiga@bibo.com.ph>
- * @version 1.3
- *
- */
-public class Cal {
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
-	public static String[] months = { "JANUARY", "FEBRUARY", "MARCH", "APRIL",
-			"MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER",
-			"NOVEMBER", "DECEMBER" };
+ 
+public class Cal {
 	
-	public static String[] nameOfDays = {"日", "月", "火", "水", "木", "金", "土"};
-	
+	public static SimpleDateFormat yearMonthFormat() {
+		return new SimpleDateFormat("yyyy-MM", Locale.JAPAN);
+	}
+
+	public static String currentDate() {
+		return new SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN)
+				.format(new Date());
+	}
 }
