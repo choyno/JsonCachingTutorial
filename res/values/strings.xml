@@ -2,7 +2,11 @@
 <resources>
 
     <string name="app_name">JsonCachingTutorial</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-
+     <string name="title_activity_announcement">Announcement</string>
+         <string name="action_settings">Setting</string>
+    <string name="lbl_announcement_title">Lorem Ipsum is simply dummy</string>
+    <string name="lbl_announcement_date">2014&#8211;05&#8211;21</string>
+    <string name="lbl_announcement_message">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500.</string>
+    <string name="title_activity_announcement_details">Announcement Details</string>
+  
 </resources>

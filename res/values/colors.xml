@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="transparent">#00000000</color>
+    
+    <color name="white">#ffffff</color>
+    <color name="list_item_title">#fff</color>
+    <color name="list_background">#303030</color>
+    <color name="list_background_pressed">#992416</color>
+    <color name="list_divider">#272727</color>
+    <color name="counter_text_bg">#626262</color>
+    <color name="counter_text_color">#c5c4c4</color>
+    <color name="btn_gray">#B3B3B3</color>
+    <color name="btn_green">#99CC00</color>
+
+    <!-- Official Color -->
+	<color name="picton_blue">#56BEEE</color>
+	<color name="curious_blue">#22A0DA</color>
+	<color name="eastern_blue">#1780B0</color>
+	<color name="white_solid">#FFFFFF</color>
+	<color name="aqua_haze">#F6F8FA</color>
+	<color name="athens_gray_01">#F0F2F5</color>
+	<color name="athens_gray_02">#E1E4E9</color>
+	<color name="iron_01">#CBCCD0</color>
+	<color name="iron_02">#D3D7DC</color>
+	<color name="gray_chateau">#9EA7B3</color>
+	<color name="oslo_gray">#8F9399</color>
+	<color name="emperor">#555555</color>
+	<color name="atlantis">#8BC639</color>
+	<color name="sushi">#7FB632</color>
+	<color name="web_orange">#FFAB00</color>
+	<color name="flush_orange">#FF7E00</color>
+	<color name="sunglow">#FFC830</color>
+	<color name="fuel_yellow">#EFB924</color>
+	<color name="persimmon">#FF555A</color>
+	<color name="valencia">#D24045</color>
+	<color name="black">#000000</color>
+	<color name="gray">#858585</color>
+	
+	<color name="bronze_start">#aa6317</color>
+	<color name="bronze_end">#61380d</color>
+	
+	<color name="silver_start">#c5c6cb</color>
+	<color name="silver_end">#787b88</color>
+	
+	<color name="gold_start">#c7b800</color>
+	<color name="gold_end">#dfd700</color>
+	
+	<color name="platinum_start">#fefefe</color>
+	<color name="platinum_end">#9e9e9e</color>
+	
+	<color name="crystal_start">#ffffff</color>
+	<color name="crystal_end">#c4dfe9</color>
+	
+	<color name="master_start">#2835c5</color>
+	<color name="master_end">#161d7b</color>
+	
+	<color name="legend_start">#c11456</color>
+	<color name="legend_end">#6e0a2f</color>
+	
+
+</resources>

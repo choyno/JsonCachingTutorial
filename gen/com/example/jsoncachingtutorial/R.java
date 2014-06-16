@@ -10,6 +10,56 @@ package com.example.jsoncachingtutorial;
 public final class R {
     public static final class attr {
     }
+    public static final class color {
+        public static final int aqua_haze=0x7f04000e;
+        public static final int athens_gray_01=0x7f04000f;
+        public static final int athens_gray_02=0x7f040010;
+        public static final int atlantis=0x7f040016;
+        public static final int black=0x7f04001e;
+        public static final int bronze_end=0x7f040021;
+        public static final int bronze_start=0x7f040020;
+        public static final int btn_gray=0x7f040008;
+        public static final int btn_green=0x7f040009;
+        public static final int counter_text_bg=0x7f040006;
+        public static final int counter_text_color=0x7f040007;
+        public static final int crystal_end=0x7f040029;
+        public static final int crystal_start=0x7f040028;
+        public static final int curious_blue=0x7f04000b;
+        public static final int eastern_blue=0x7f04000c;
+        public static final int emperor=0x7f040015;
+        public static final int flush_orange=0x7f040019;
+        public static final int fuel_yellow=0x7f04001b;
+        public static final int gold_end=0x7f040025;
+        public static final int gold_start=0x7f040024;
+        public static final int gray=0x7f04001f;
+        public static final int gray_chateau=0x7f040013;
+        public static final int iron_01=0x7f040011;
+        public static final int iron_02=0x7f040012;
+        public static final int legend_end=0x7f04002d;
+        public static final int legend_start=0x7f04002c;
+        public static final int list_background=0x7f040003;
+        public static final int list_background_pressed=0x7f040004;
+        public static final int list_divider=0x7f040005;
+        public static final int list_item_title=0x7f040002;
+        public static final int master_end=0x7f04002b;
+        public static final int master_start=0x7f04002a;
+        public static final int oslo_gray=0x7f040014;
+        public static final int persimmon=0x7f04001c;
+        /**  Official Color 
+         */
+        public static final int picton_blue=0x7f04000a;
+        public static final int platinum_end=0x7f040027;
+        public static final int platinum_start=0x7f040026;
+        public static final int silver_end=0x7f040023;
+        public static final int silver_start=0x7f040022;
+        public static final int sunglow=0x7f04001a;
+        public static final int sushi=0x7f040017;
+        public static final int transparent=0x7f040000;
+        public static final int valencia=0x7f04001d;
+        public static final int web_orange=0x7f040018;
+        public static final int white=0x7f040001;
+        public static final int white_solid=0x7f04000d;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -17,25 +67,38 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f050000;
+        public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
+        public static final int msg_no_connection=0x7f020001;
+        public static final int scroll_style=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f080000;
+        public static final int action_settings=0x7f090006;
+        public static final int announcement_date=0x7f090005;
+        public static final int announcement_message=0x7f090004;
+        public static final int announcement_title=0x7f090003;
+        public static final int imgNoConnection=0x7f090002;
+        public static final int lst_announcement=0x7f090000;
+        public static final int progressBarAnnouncement=0x7f090001;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
+        public static final int announcement_row=0x7f030001;
     }
     public static final class menu {
-        public static final int main=0x7f070000;
+        public static final int main=0x7f080000;
     }
     public static final class string {
-        public static final int action_settings=0x7f050001;
-        public static final int app_name=0x7f050000;
-        public static final int hello_world=0x7f050002;
+        public static final int action_settings=0x7f060002;
+        public static final int app_name=0x7f060000;
+        public static final int lbl_announcement_date=0x7f060004;
+        public static final int lbl_announcement_message=0x7f060005;
+        public static final int lbl_announcement_title=0x7f060003;
+        public static final int title_activity_announcement=0x7f060001;
+        public static final int title_activity_announcement_details=0x7f060006;
     }
     public static final class style {
         /** 
@@ -59,10 +122,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
     }
 }
