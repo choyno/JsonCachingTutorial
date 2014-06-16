@@ -1,16 +1,26 @@
 package com.example.jsoncachingtutorial;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxStatus;
 import com.example.jsoncachingtutorial.api_classes.GetAnnouncements;
+import com.example.jsoncachingtutorial.api_classes.GetAnnouncements.Announcement;
 import com.example.jsoncachingtutorial.ref.Ref;
 import com.google.gson.Gson;
 
@@ -19,7 +29,10 @@ public class MainActivity extends Activity {
 	
 	AQuery aq;
 	Gson gson = new Gson();
+	Bundle bundleData;
+	
 	GetAnnouncements announcementList = new GetAnnouncements();
+	List<Announcement> announcement_list = new ArrayList<Announcement>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +48,7 @@ public class MainActivity extends Activity {
 	
 	public void jsonCb(String url, JSONObject json, AjaxStatus status){
 		Log.d("asdasd", "=============");
-		
-		
+ 
 		if (status.getCode() == AjaxStatus.NETWORK_ERROR){
 			aq.id(R.id.imgNoConnection).visible();
 			return;
@@ -46,10 +58,77 @@ public class MainActivity extends Activity {
 		if (announcementList.result_code == 0) {
 					Log.d("asdasd", announcementList+"");
 					Log.d("asdasd", json.toString());
+					populateAnnouncement();
+					populateAnnouncementList();
+					AnnouncementDetails();
 		} else {
 			Toast.makeText(this, announcementList.result_message, Toast.LENGTH_SHORT).show();
-		}
+		} 
+	}
+	protected void AnnouncementDetails() {
+		ListView lst_announcement = (ListView) findViewById(R.id.lst_announcement);
+		lst_announcement.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
+				Announcement announce_details_holder = announcement_list.get(position);
+						
+				bundleData = new Bundle();
+				 
+				bundleData.putString("announce_title", announce_details_holder.title);
+				bundleData.putString("announce_content", announce_details_holder.content);
+				bundleData.putString("announce_date", announce_details_holder.date);
+				
+				//can pass using intent :D
+				 Toast.makeText(getApplicationContext(),  announce_details_holder.title + "/ " +   announce_details_holder.content, Toast.LENGTH_SHORT ).show();
+				}
+			});
+	}
+	
+	
+	protected void populateAnnouncement() {
+		announcement_list = announcementList.announcement;
+	}
+ 
+	private void populateAnnouncementList() { 
+		ArrayAdapter<Announcement> adapter = new MyListAdapter();
+		ListView lst_announcement = (ListView)  findViewById(R.id.lst_announcement);
+		lst_announcement.setAdapter(adapter);
+	}
+	
+	
+	
+private class MyListAdapter extends ArrayAdapter<Announcement> {
 		
+		public MyListAdapter() {
+			super( MainActivity.this , R.layout.announcement_row, announcement_list);
+		}
+ 
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View itemView = convertView;
+			
+			if (itemView == null) {
+				itemView = getLayoutInflater().inflate(R.layout.announcement_row, parent, false);
+			}
+			
+			itemView.setBackgroundColor(Color.parseColor((position%2) == 0 ? "#FFFFFF" : "#F0F2F5"));
+
+			Announcement announce_holder = announcement_list.get(position);
+			
+			AQuery aqBody = new AQuery(itemView);
+			
+			String content = announce_holder.content;
+			if (content.length() > 120){
+				content = content.substring(0, 120) + " 。。。。";
+			}
+			 
+			aqBody.id(R.id.announcement_title).text(announce_holder.title);
+			aqBody.id(R.id.announcement_message).text(content);
+			aqBody.id(R.id.announcement_date).text(announce_holder.date);
+
+			return itemView;
+		}
+
 	}
 
 	@Override
