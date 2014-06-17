@@ -17,7 +17,7 @@ public class cachingSetting {
 	public cachingSetting(Activity activity, File file){
 		cacheDir = file;
 		hActivity = activity; 
-}
+	}
 
 	//cache path in android
 	public File cachePath(String fileName){
@@ -49,6 +49,8 @@ public class cachingSetting {
 			e.printStackTrace();
 		}   
 	}
+	
+	
 	@SuppressWarnings("resource")
 	public String readCacheFile(String fileName){
 		FileInputStream fis;
@@ -66,4 +68,10 @@ public class cachingSetting {
 		Toast.makeText(hActivity,  content,  	Toast.LENGTH_LONG).show();   
 		return content; 
 	}
+	
+	//check cache expiration
+	// if the file name date is not equal != date today
+	// expired cached and create new for today data
+	
+	
 }

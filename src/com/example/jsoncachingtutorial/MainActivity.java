@@ -54,55 +54,7 @@ public class MainActivity extends Activity {
 		 aq = new AQuery(this);
 		aq.progress(R.id.progressBarAnnouncement).ajax(Ref.getUrl(Ref.GETANNOUNCEMENTS), JSONObject.class, this, "jsonCb"); 
 	} 
-	
-/*	//cache path in android
-	public File cachePath(String fileName){
-		File readFF = new File(getCacheDir(),  fileName);
-		return readFF; 
-	}
-	
-	//check the cache file is exist
-	public boolean checkCachefile(String fileName){ 
-		File file =new File(getCacheDir()+"/" + fileName); 
-		if(file.exists()){ 
-			return true;
-		}else{ 
-			return false;
-		}
-	}
-	 //cache the value 
-	public void createCache(String fileName, String JsonValue){
-		FileOutputStream fos;
-		try {   
-			fos = new FileOutputStream(cachePath(fileName));
-			String content = JsonValue;
-			fos.write(content.getBytes());
-			fos.close(); 
-			Toast.makeText( MainActivity.this,  fileName + " saved",  	Toast.LENGTH_LONG).show(); 
-		} catch (FileNotFoundException e) { 
-			e.printStackTrace();
-		} catch (IOException e) { 
-			e.printStackTrace();
-		}   
-	}
-	@SuppressWarnings("resource")
-	public String readCacheFile(String fileName){
-		FileInputStream fis;
-    	String content = "";
-    	try { 
-    		fis = new FileInputStream(cachePath(fileName));
-    		byte[] input = new byte[fis.available()];
-    		while (fis.read(input) != -1) {}
-    		content += new String(input);
-    	} catch (FileNotFoundException e) {
-    		e.printStackTrace();
-    	} catch (IOException e) {
-    		e.printStackTrace();	
-    	} 
-		Toast.makeText( MainActivity.this,  content,  	Toast.LENGTH_LONG).show();   
-		return content; 
-	}*/
-	
+	 
 	public void jsonCb(String url, JSONObject json, AjaxStatus status){ 
 		String date = Cal.currentDate();
 		String fileName =  "announcements" + "_" + "1"+ "_" + date;  
